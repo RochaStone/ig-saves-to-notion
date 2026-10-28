@@ -16,7 +16,7 @@ E=$(git ls-files 2>/dev/null | grep -E "(^|/)\.env($|\.)" | grep -v example | wc
 check "No .env files tracked by git" $([ "$E" -eq 0 ] && echo 0 || echo 1)
 
 # 3. No personal paths or private identifiers
-P=$(grep -rIE $EXCL -E "/Users/[A-Za-z0-9._-]+/|/home/[A-Za-z0-9._-]+/|supabase\.co/|project_id|service_role" . 2>/dev/null | wc -l | tr -d ' ')
+P=$(grep -rIE $EXCL -E "/Users/[A-Za-z0-9._-]+/|/home/[A-Za-z0-9._-]+/|supabase\.co/|project_id|service_role" . 2>/dev/null | grep -vE "^\./(scripts/security-check\.sh|\.pre-commit-config\.yaml):" | wc -l | tr -d ' ')
 check "No home-directory paths or private project identifiers" $([ "$P" -eq 0 ] && echo 0 || echo 1)
 
 # 4. IP terms that must never ship (moat)
