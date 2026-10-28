@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hook library for Rocha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>/* Hook Library, analog: index cards on a plum ground. Washi tape in candy pink, paper grain, a real shadow.
+   Defaults are the bundled example; style.json overrides the :root variables. No glow, no coloured shadows. */
+:root {
+  --ground: #50163C; --wine: #682047; --ink: #3B1230; --cream: #FFF7F4; --paper: #FFE3F1;
+  --candy: #FE9DCA; --marker: #C2246E; --plum: #50163C; --gold: #E9B949;
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --label: "Bricolage Grotesque", system-ui, "Helvetica Neue", Arial, sans-serif;
+  --mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+  --scrawl: "Permanent Marker", "Marker Felt", "Comic Sans MS", cursive;
+  --pixel: "Silkscreen", "Pixelify Sans", ui-monospace, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--ground);
+  background-image: radial-gradient(color-mix(in srgb, var(--cream) 5%, transparent) 1px, transparent 1px);
+  background-size: 6px 6px;
+  color: var(--ink);
+  font-family: var(--mono);
+}
+body.page { padding: 40px 16px 64px; }
+.sr { position: absolute; left: -9999px; }
+
+.lib { max-width: 1040px; margin: 0 auto; }
+.mast { text-align: center; padding-bottom: 14px; border-bottom: 2px solid var(--gold); color: var(--cream); }
+.kicker { font-family: var(--label); font-weight: 800; letter-spacing: .16em; font-size: 12px; color: var(--candy); text-transform: uppercase; }
+.mast h1 { font-family: var(--serif); font-weight: 900; color: var(--cream); font-size: clamp(44px, 10vw, 92px); line-height: .92; letter-spacing: -.02em; margin: 8px 0 6px; }
+.for { font-family: var(--label); font-size: 15px; color: var(--cream); min-height: 1em; }
+.for b { font-weight: 800; }
+.count { font-family: var(--mono); font-size: 13px; color: var(--gold); margin-top: 6px; }
+
+.tools { margin: 16px 0 18px; display: grid; gap: 10px; }
+.tools label, .tools .fake {
+  display: block; font-family: var(--label); font-weight: 800; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--candy);
+}
+.tools input {
+  width: 100%; font: 500 16px var(--mono); color: var(--ink); background: var(--cream);
+  border: 2px solid var(--ink); border-radius: 4px; padding: 11px 12px; margin-top: 6px;
+}
+.tools input:focus-visible, .chip:focus-visible, .entry a:focus-visible { outline: 3px solid var(--candy); outline-offset: 2px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font: 800 12px var(--label); letter-spacing: .04em; color: var(--cream); background: transparent; cursor: pointer;
+  border: 1.5px solid color-mix(in srgb, var(--cream) 70%, transparent); border-radius: 999px; padding: 6px 12px;
+}
+.chip[aria-pressed="true"] { background: var(--candy); border-color: var(--candy); color: var(--ink); }
+
+.cards { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px 20px; padding-top: 14px; }
+.entry {
+  position: relative; padding: 24px 20px 18px; color: var(--ink);
+  background-color: var(--paper);
+  background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 27px,
+    color-mix(in srgb, var(--ink) 11%, transparent) 27px, color-mix(in srgb, var(--ink) 11%, transparent) 28px);
+  border: 1px solid color-mix(in srgb, var(--ink) 30%, transparent);
+  box-shadow: 0 1px 2px rgba(0,0,0,.25), 0 14px 28px rgba(0,0,0,.32); /* a print on a desk, neutral only */
+}
+.entry[hidden] { display: none; }
+.entry:nth-child(odd) { transform: rotate(-.5deg); }
+.entry:nth-child(even) { transform: rotate(.4deg); }
+.entry:nth-child(3n) { transform: rotate(-.2deg); }
+.tape {
+  position: absolute; top: -11px; left: 50%; width: 92px; height: 22px; margin-left: -46px; transform: rotate(-2deg);
+  background: color-mix(in srgb, var(--candy) 78%, transparent);
+  background-image: repeating-linear-gradient(90deg, transparent 0 6px, color-mix(in srgb, var(--cream) 30%, transparent) 6px 8px);
+}
+.meta { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 12px; color: var(--wine); }
+.meta .type { font-family: var(--label); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.meta .who { font-weight: 500; color: var(--ink); min-width: 0; overflow-wrap: anywhere; }
+.meta .date { margin-left: auto; padding: 1px 6px; border: 1.5px solid var(--marker); color: var(--marker); transform: rotate(-3deg); } /* a date stamp */
+.entry h2 { font: 800 17px/1.3 var(--label); margin: 10px 0 10px; overflow-wrap: anywhere; }
+.entry h2 a { color: var(--ink); text-decoration-color: var(--marker); text-underline-offset: 3px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.pill {
+  font: 800 11px var(--label); letter-spacing: .06em; text-transform: uppercase; padding: 3px 10px;
+  border: 1.5px solid var(--ink); border-radius: 999px; color: var(--ink);
+}
+.pill.hook { background: var(--candy); border-color: var(--candy); }
+.pill.ghost { border-style: dashed; opacity: .75; }
+.why, .idea { font-size: 13px; line-height: 1.5; margin-top: 4px; }
+.why b, .idea b { display: block; font: 800 10px var(--label); letter-spacing: .14em; text-transform: uppercase; color: var(--wine); }
+.idea { font-family: var(--scrawl); font-size: 17px; line-height: 1.3; color: var(--marker); margin-top: 8px; }
+.idea b { font-family: var(--label); color: var(--wine); }
+
+.empty { grid-column: 1 / -1; padding: 28px 20px; background: var(--paper); border: 1.5px dashed var(--ink); font-family: var(--label); }
+.none { margin-top: 18px; color: var(--cream); font-family: var(--label); text-align: center; }
+.foot { text-align: center; margin-top: 26px; color: var(--cream); }
+.scrawl {
+  font-family: var(--scrawl); color: var(--candy); font-size: 32px; line-height: 1.1;
+  transform: rotate(-3deg); display: inline-block; margin-bottom: 6px;
+}
+.scrawl svg { display: block; width: 100%; height: 14px; }
+.scrawl path { fill: none; stroke: var(--candy); stroke-width: 4; stroke-linecap: round; }
+.credit { font-family: var(--label); font-weight: 600; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--cream); opacity: .75; }
+
+/* Share card: exactly 1080 x 1350 */
+body.card { width: 1080px; height: 1350px; overflow: hidden; padding: 52px 64px; }
+body.card.m-analog .lib { max-width: none; height: 1246px; display: flex; flex-direction: column; }
+body.card.m-analog .mast h1 { font-size: 120px; }
+body.card.m-analog .kicker { font-size: 16px; }
+body.card.m-analog .for { font-size: 20px; }
+body.card.m-analog .count { font-size: 16px; }
+body.card.m-analog .tools { margin: 14px 0 6px; }
+body.card.m-analog .tools .fake { font-size: 14px; border: 2px solid var(--ink); background: var(--cream); color: var(--wine); padding: 12px 14px; border-radius: 4px; text-transform: none; letter-spacing: .04em; }
+body.card.m-analog .cards { grid-template-columns: 1fr 1fr; gap: 26px 24px; flex: 1; align-content: start; }
+body.card.m-analog .entry h2 { font-size: 20px; }
+body.card.m-analog .why { font-size: 15px; }
+body.card.m-analog .idea { font-size: 20px; }
+body.card.m-analog .meta { font-size: 14px; }
+body.card.m-analog .foot { margin-top: 10px; }
+body.card.m-analog .scrawl { font-size: 38px; }
+
+@media (max-width: 560px) {
+  body.page { padding: 28px 12px 48px; }
+  .cards { grid-template-columns: 1fr; }
+  .entry:nth-child(n) { transform: none; }
+}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,900;1,400;1,900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<style>:root { --ground: #50163C; --wine: #682047; --candy: #FE9DCA; --paper: #FFE3F1; --cream: #FFF7F4; --ink: #3B1230; --marker: #C2246E; --plum: #50163C; --gold: #E9B949; --serif: "Fraunces", Georgia, "Times New Roman", serif; --label: "Bricolage Grotesque", system-ui, "Helvetica Neue", Arial, sans-serif; --mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace; --scrawl: "Permanent Marker", "Marker Felt", "Comic Sans MS", cursive; }</style></head>
+<body class="page m-analog">
+<main class="lib frame fit" aria-label="Hook library">
+  <header class="mast">
+    <div class="kicker">YOUR INSTAGRAM SAVES, IN ONE PLACE</div>
+    <h1>HOOK LIBRARY</h1>
+    <div class="for">for <b>Rocha</b> · pottery retreats for burnt-out lawyers</div>
+    <div class="count" aria-live="polite"><span id="shown">11</span> of 11 saves shown · 11 tagged</div>
+  </header>
+  <div class="tools"><label for="q">search your hooks</label><input id="q" type="search" placeholder="try: price, ritual, reel" autocomplete="off"><div class="chips" role="group" aria-label="filter by hook type"><button type="button" class="chip" data-group="hook" data-value="Before and after" aria-pressed="false">Before and after</button><button type="button" class="chip" data-group="hook" data-value="Contrarian" aria-pressed="false">Contrarian</button><button type="button" class="chip" data-group="hook" data-value="Curiosity gap" aria-pressed="false">Curiosity gap</button><button type="button" class="chip" data-group="hook" data-value="List or steps" aria-pressed="false">List or steps</button><button type="button" class="chip" data-group="hook" data-value="Other" aria-pressed="false">Other</button><button type="button" class="chip" data-group="hook" data-value="Proof first" aria-pressed="false">Proof first</button><button type="button" class="chip" data-group="hook" data-value="Question" aria-pressed="false">Question</button><button type="button" class="chip" data-group="hook" data-value="Relatable moment" aria-pressed="false">Relatable moment</button><button type="button" class="chip" data-group="hook" data-value="Story open" aria-pressed="false">Story open</button></div><div class="chips" role="group" aria-label="filter by category"><button type="button" class="chip" data-group="cat" data-value="Offers and sales" aria-pressed="false">Offers and sales</button><button type="button" class="chip" data-group="cat" data-value="Other" aria-pressed="false">Other</button><button type="button" class="chip" data-group="cat" data-value="Systems and tools" aria-pressed="false">Systems and tools</button><button type="button" class="chip" data-group="cat" data-value="Wellness and rituals" aria-pressed="false">Wellness and rituals</button></div></div>
+  <ol class="cards"><li class="entry tagged" data-q="nobody tells you the first week of a retreat business is mostly spreadsheets. here is the one i wish i had started with. reel example_clay_coach curiosity gap talking head other it promises the unglamorous truth and makes you wait for the list. the three boring tasks that quietly decide whether a retreat sells out." data-hook="Curiosity gap" data-cat="Other"><span class="tape" aria-hidden="true"></span><p class="meta"><span class="type">Reel</span><span class="who">@example_clay_coach</span><span class="date">24 Oct 2026</span></p><h2><a href="https://www.instagram.com/p/FxAmple001/" target="_blank" rel="noopener noreferrer">Nobody tells you the first week of a retreat business is mostly spreadsheets. Here is the one I wish I had started with.</a></h2><div class="tags"><span class="pill hook">Curiosity gap</span><span class="pill">Talking head</span><span class="pill ghost">Other</span></div><p class="why"><b>why keep it</b> It promises the unglamorous truth and makes you wait for the list.</p><p class="idea"><b>my version</b> The three boring tasks that quietly decide whether a retreat sells out.</p></li><li class="entry tagged" data-q="5 things i stopped doing so my studio could breathe 1. saying yes to every enquiry 2. discounting in week one 3. posting at 6am carousel example_slow_studio list or steps carousel of tips wellness and rituals a numbered list of things she stopped doing, so each slide is a small relief. five things i stopped doing this year, one per slide." data-hook="List or steps" data-cat="Wellness and rituals"><span class="tape" aria-hidden="true"></span><p class="meta"><span class="type">Carousel</span><span class="who">@example_slow_studio</span><span class="date">22 Oct 2026</span></p><h2><a href="https://www.instagram.com/p/FxAmple002/" target="_blank" rel="noopener noreferrer">5 things I stopped doing so my studio could breathe 1. Saying yes to every enquiry 2. Discounting in week one 3. Postin…</a></h2><div class="tags"><span class="pill hook">List or steps</span><span class="pill">Carousel of tips</span><span class="pill ghost">Wellness and rituals</span></div><p class="why"><b>why keep it</b> A numbered list of things she stopped doing, so each slide is a small relief.</p><p class="idea"><b>my version</b> Five things I stopped doing this year, one per slide.</p></li><li class="entry tagged" data-q="pov: you finally raised your prices and the right people said yes. before and after of my booking calendar. reel example_retreat_notes before and after voiceover on b-roll offers and sales it shows the change first and lets the price rise be the reveal. a calendar screenshot from before and after i changed my booking rules." data-hook="Before and after" data-cat="Offers and sales"><span class="tape" aria-hidden="true"></span><p class="meta"><span class="type">Reel</span><span class="who">@example_retreat_notes</span><span class="date">20 Oct 2026</span></p><h2><a href="https://www.instagram.com/p/FxAmple003/" target="_blank" rel="noopener noreferrer">POV: you finally raised your prices and the right people said yes. Before and after of my booking calendar.</a></h2><div class="tags"><span class="pill hook">Before and after</span><span class="pill">Voiceover on b-roll</span><span class="pill ghost">Offers and sales</span></div><p class="why"><b>why keep it</b> It shows the change first and lets the price rise be the reveal.</p><p class="idea"><b>my version</b> A calendar screenshot from before and after I changed my booking rules.</p></li><li class="entry tagged" data-q="what if your dream client has already read your bio three times and is waiting for you to say the next thing? 🔮 post example_launch_diary question text on screen offers and sales it opens on a question that makes the reader feel already seen. what your client has already read three times before she writes to you." data-hook="Question" data-cat="Offers and sales"><span class="tape" aria-hidden="true"></span><p class="meta"><span class="type">Post</span><span class="who">@example_launch_diary</span><span class="date">18 Oct 2026</span></p><h2><a href="https://www.instagram.com/p/FxAmple004/" target="_blank" rel="noopener noreferrer">What if your dream client has already read your bio three times and is waiting for you to say the next thing? 🔮</a></h2><div class="tags"><span class="pill hook">Question</span><span class="pill">Text on screen</span><span class="pill ghost">Offers and sales</span></div><p class="why"><b>why keep it</b> It opens on a question that makes the reader feel already seen.</p><p class="idea"><b>my version</b> What your client has already read three times before she writes to you.</p></li><li class="entry tagged" data-q=" reel example_quiet_ledger other photo dump other the caption is empty, so this is tagged other. open the post to decide. a quiet behind-the-scenes post that needs no words." data-hook="Other" data-cat="Other"><span class="tape" aria-hidden="true"></span><p class="meta"><span class="type">Reel</span><span class="who">@example_quiet_ledger</span><span class="date">15 Oct 2026</span></p><h2><a href="https://www.instagram.com/p/FxAmple006/" target="_blank" rel="noopener noreferrer">Save by @example_quiet_ledger</a></h2><div class="tags"><span class="pill hook">Other</span><span class="pill">Photo dump</span><span class="pill ghost">Other</span></div><p class="why"><b>why keep it</b> The caption is empty, so this is tagged Other. Open the post to decide.</p><p class="idea"><b>my version</b> A quiet behind-the-scenes post that needs no words.</p></li><li class="entry tagged" data-q="three questions i ask before i take on a new client. number two filters out almost everyone. carousel example_clay_coach list or steps carousel of tips offers and sales three questions, with the second one held back as the hook. the one question i ask that filters for the right retreat guest." data-hook="List or steps" data-cat="Offers and sales"><span class="tape" aria-hidden="true"></span><p class="meta"><span class="type">Carousel</span><span class="who">@example_clay_coach</span><span class="date">12 Oct 2026</span></p><h2><a href="https://www.instagram.com/p/FxAmple007/" target="_blank" rel="noopener noreferrer">Three questions I ask before I take on a new client. Number two filters out almost everyone.</a></h2><div class="tags"><span class="pill hook">List or steps</span><span class="pill">Carousel of tips</span><span class="pill ghost">Offers and sales</span></div><p class="why"><b>why keep it</b> Three questions, with the second one held back as the hook.</p><p class="idea"><b>my version</b> The one question I ask that filters for the right retreat guest.</p></li><li class="entry tagged" data-q="the tea ritual that changed how i open every workshop (it takes ninety seconds). reel example_slow_studio story open talking head wellness and rituals a tiny ritual with a time stamp attached, which makes it easy to copy. the ninety seconds i give the room before a workshop starts." data-hook="Story open" data-cat="Wellness and rituals"><span class="tape" aria-hidden="true"></span><p class="meta"><span class="type">Reel</span><span class="who">@example_slow_studio</span><span class="date">8 Oct 2026</span></p><h2><a href="https://www.instagram.com/p/FxAmple008/" target="_blank" rel="noopener noreferrer">The tea ritual that changed how I open every workshop (it takes ninety seconds).</a></h2><div class="tags"><span class="pill hook">Story open</span><span class="pill">Talking head</span><span class="pill ghost">Wellness and rituals</span></div><p class="why"><b>why keep it</b> A tiny ritual with a time stamp attached, which makes it easy to copy.</p><p class="idea"><b>my version</b> The ninety seconds I give the room before a workshop starts.</p></li><li class="entry tagged" data-q="stop calling it a newsletter. call it the letter your best clients read first. post example_retreat_notes contrarian quote card offers and sales it tells you to stop using a word everyone uses. why i call it a letter, not a newsletter." data-hook="Contrarian" data-cat="Offers and sales"><span class="tape" aria-hidden="true"></span><p class="meta"><span class="type">Post</span><span class="who">@example_retreat_notes</span><span class="date">3 Oct 2026</span></p><h2><a href="https://www.instagram.com/p/FxAmple009/" target="_blank" rel="noopener noreferrer">Stop calling it a newsletter. Call it the letter your best clients read first.</a></h2><div class="tags"><span class="pill hook">Contrarian</span><span class="pill">Quote card</span><span class="pill ghost">Offers and sales</span></div><p class="why"><b>why keep it</b> It tells you to stop using a word everyone uses.</p><p class="idea"><b>my version</b> Why I call it a letter, not a newsletter.</p></li><li class="entry tagged" data-q="i mapped my whole offer on one page, then showed my sister. watch her face when she gets to step four. reel example_launch_diary relatable moment voiceover on b-roll offers and sales it stages a small moment of recognition and ends on a reaction. show my whole offer on one page to someone who knows nothing about it." data-hook="Relatable moment" data-cat="Offers and sales"><span class="tape" aria-hidden="true"></span><p class="meta"><span class="type">Reel</span><span class="who">@example_launch_diary</span><span class="date">28 Sep 2026</span></p><h2><a href="https://www.instagram.com/p/FxAmple010/" target="_blank" rel="noopener noreferrer">I mapped my whole offer on one page, then showed my sister. Watch her face when she gets to step four.</a></h2><div class="tags"><span class="pill hook">Relatable moment</span><span class="pill">Voiceover on b-roll</span><span class="pill ghost">Offers and sales</span></div><p class="why"><b>why keep it</b> It stages a small moment of recognition and ends on a reaction.</p><p class="idea"><b>my version</b> Show my whole offer on one page to someone who knows nothing about it.</p></li><li class="entry tagged" data-q="a short list of the tools i pay for every month and the ones i cancelled this year carousel example_quiet_ledger list or steps carousel of tips systems and tools a short honest list of what stays and what goes. the tools i keep, the ones i cancelled, and why." data-hook="List or steps" data-cat="Systems and tools"><span class="tape" aria-hidden="true"></span><p class="meta"><span class="type">Carousel</span><span class="who">@example_quiet_ledger</span><span class="date">21 Sep 2026</span></p><h2><a href="https://www.instagram.com/p/FxAmple011/" target="_blank" rel="noopener noreferrer">A short list of the tools I pay for every month and the ones I cancelled this year</a></h2><div class="tags"><span class="pill hook">List or steps</span><span class="pill">Carousel of tips</span><span class="pill ghost">Systems and tools</span></div><p class="why"><b>why keep it</b> A short honest list of what stays and what goes.</p><p class="idea"><b>my version</b> The tools I keep, the ones I cancelled, and why.</p></li><li class="entry tagged" data-q="the most useful sentence on my sales page is also the shortest one. post example_clay_coach proof first quote card offers and sales one short line carries the whole claim and the post proves it. the shortest sentence on my sales page and why it earns its place." data-hook="Proof first" data-cat="Offers and sales"><span class="tape" aria-hidden="true"></span><p class="meta"><span class="type">Post</span><span class="who">@example_clay_coach</span><span class="date">14 Sep 2026</span></p><h2><a href="https://www.instagram.com/p/FxAmple012/" target="_blank" rel="noopener noreferrer">The most useful sentence on my sales page is also the shortest one.</a></h2><div class="tags"><span class="pill hook">Proof first</span><span class="pill">Quote card</span><span class="pill ghost">Offers and sales</span></div><p class="why"><b>why keep it</b> One short line carries the whole claim and the post proves it.</p><p class="idea"><b>my version</b> The shortest sentence on my sales page and why it earns its place.</p></li></ol>
+  <p id="none" class="none" hidden>Nothing matches yet. Clear the search to see them all.</p>
+  <footer class="foot"><p class="scrawl">build your founder world<svg viewBox="0 0 300 20" aria-hidden="true"><path d="M4 14 C 80 4, 160 18, 296 6" /></svg></p><div class="credit">Rocha · @rocheverse · made with Rocha Coded</div></footer>
+</main><script>
+(function () {
+  var q = document.getElementById("q"), cards = [].slice.call(document.querySelectorAll(".entry"));
+  var chips = [].slice.call(document.querySelectorAll(".chip")), none = document.getElementById("none");
+  var shown = document.getElementById("shown"), on = {hook: null, cat: null};
+  function run() {
+    var t = q.value.trim().toLowerCase(), n = 0;
+    cards.forEach(function (c) {
+      var ok = (!t || c.dataset.q.indexOf(t) > -1) && (!on.hook || c.dataset.hook === on.hook) &&
+        (!on.cat || c.dataset.cat === on.cat);
+      c.hidden = !ok;
+      if (ok) { n++; }
+    });
+    none.hidden = n > 0;
+    if (shown) { shown.textContent = n; }
+  }
+  chips.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var g = b.dataset.group, v = b.dataset.value;
+      on[g] = on[g] === v ? null : v;
+      chips.forEach(function (x) { if (x.dataset.group === g) { x.setAttribute("aria-pressed", String(on[g] === x.dataset.value)); } });
+      run();
+    });
+  });
+  q.addEventListener("input", run);
+})();
+</script></body></html>

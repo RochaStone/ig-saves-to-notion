@@ -1,0 +1,40 @@
+{
+  "name": "Rocha Coded",
+  "owner": "Rocha",
+  "handle": "@rocheverse",
+  "site": "https://thrivingera.com",
+  "palette": {
+    "hero": "#50163C",
+    "accent": "#FE9DCA",
+    "paper": "#FFF7F4",
+    "paper_pink": "#FFE3F1",
+    "ink": "#3B1230",
+    "marker": "#C2246E",
+    "plum": "#50163C",
+    "wine": "#682047",
+    "gold": "#E9B949",
+    "cool": "#B9B3F5"
+  },
+  "fonts": {
+    "masthead": "Fraunces",
+    "label": "Bricolage Grotesque",
+    "body": "Fraunces",
+    "scrawl": "Permanent Marker",
+    "script": "Pinyon Script",
+    "mono": "DM Mono"
+  },
+  "motif": "analog",
+  "lines": {
+    "masthead": "THE ROCHEVERSE TIMES",
+    "headline": "WHAT IF YOUR FOUNDER WORLD WORKS OUT?",
+    "scrawl": "build your founder world",
+    "todo": "TO DO: BUILD YOUR FOUNDER WORLD",
+    "stamp": "LORE",
+    "celebrate": "I AM SO LUCKY",
+    "affirm": "EVERYTHING WORKS OUT FOR ME",
+    "invite": "YOU ARE INVITED TO THE ROCHEVERSE / come build your founder world / dress code: lore",
+    "magazine": "ROCHEVERSE"
+  },
+  "references": [],
+  "notes": "Editorial and certain, leaning dark. Plum, cream, blush, gold. Ephemera you could hold."
+}

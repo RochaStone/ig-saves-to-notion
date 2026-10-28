@@ -1,0 +1,71 @@
+/* y2k-blog: the 2003 blog page. Cream OS 9 window, plum title bar, gold buttons, sidebar, hit counter, guestbook.
+   Pixel hearts and stars in gold are the only stickers. No glow. */
+body.m-y2k-blog {
+  background-color: var(--paper);
+  background-image: conic-gradient(var(--paper) 25%, color-mix(in srgb, var(--candy) 30%, var(--paper)) 0 50%,
+                                   var(--paper) 0 75%, color-mix(in srgb, var(--candy) 30%, var(--paper)) 0);
+  background-size: 28px 28px;
+  color: var(--ink);
+}
+.m-y2k-blog .px { font-family: var(--pixel); letter-spacing: .03em; }
+.pix { display: inline-block; vertical-align: -2px; color: var(--gold); }
+
+.win { margin: 0 auto; max-width: 1180px; background: var(--cream); border: 2px solid var(--ink); box-shadow: 6px 6px 0 rgba(0,0,0,.28); }
+.titlebar {
+  position: relative; display: flex; align-items: center; height: 34px; padding: 0 10px;
+  background: var(--ground);
+  background-image: repeating-linear-gradient(to bottom, transparent 0 3px, color-mix(in srgb, var(--cream) 10%, transparent) 3px 4px);
+  border-bottom: 2px solid var(--ink);
+}
+.btns { display: flex; gap: 6px; z-index: 1; }
+.btns i { width: 14px; height: 14px; background: var(--gold); border: 1.5px solid var(--ink); display: block; }
+.titlebar .title { position: absolute; left: 0; right: 0; text-align: center; color: var(--cream); font-size: 14px; }
+
+.marquee { overflow: hidden; white-space: nowrap; border-bottom: 1.5px dashed color-mix(in srgb, var(--ink) 40%, transparent);
+  font-family: var(--mono); font-size: 13px; color: var(--wine); padding: 5px 0; }
+.marquee span { display: inline-block; padding-left: 100%; animation: marquee 24s linear infinite; }
+@keyframes marquee { to { transform: translateX(-100%); } }
+@media (prefers-reduced-motion: reduce) { .marquee span { animation: none; padding-left: 12px; } }
+
+.winbody { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 16px; padding: 16px; }
+/* inside the window the library sits on a plum panel, so the cream-on-plum header keeps its contrast */
+.post .lib { background: var(--ground); border: 1.5px solid var(--ink); padding: 20px 18px 18px; }
+.post .cards { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.side { display: flex; flex-direction: column; gap: 12px; font-family: var(--label); font-size: 14px; }
+.side section { border: 1.5px solid var(--ink); background: var(--paper); }
+.side h3 { background: var(--wine); color: var(--cream); font-size: 12px; font-weight: 400; padding: 4px 8px; text-transform: lowercase; }
+.side p { padding: 8px; line-height: 1.35; }
+.side a { color: var(--wine); font-weight: 800; }
+.counter b { display: inline-block; margin-top: 4px; font-family: var(--mono); font-weight: 500; font-size: 18px; letter-spacing: .12em;
+  background: var(--ink); color: var(--cream); padding: 2px 8px; }
+.sparkle { text-align: center; }
+.sparkle .pix { margin: 0 4px; }
+.updated { font-family: var(--mono); font-size: 12px; text-align: center; opacity: .8; }
+
+/* card: exactly 1080 x 1350 */
+body.card.m-y2k-blog { padding: 44px 40px; }
+body.card.m-y2k-blog .win { height: 1262px; display: flex; flex-direction: column; }
+body.card.m-y2k-blog .titlebar { height: 44px; }
+body.card.m-y2k-blog .titlebar .title { font-size: 18px; }
+body.card.m-y2k-blog .btns i { width: 18px; height: 18px; }
+body.card.m-y2k-blog .marquee { font-size: 16px; }
+body.card.m-y2k-blog .marquee span { animation: none; padding-left: 16px; }
+body.card.m-y2k-blog .winbody { flex: 1; min-height: 0; grid-template-columns: minmax(0, 1fr) 236px; }
+body.card.m-y2k-blog .post { display: flex; }
+body.card.m-y2k-blog .post .lib { flex: 1; min-width: 0; }
+body.card.m-y2k-blog .mast h1 { font-size: 70px; }
+body.card.m-y2k-blog .tools { margin: 10px 0 4px; }
+body.card.m-y2k-blog .tools .fake { font-size: 12px; border: 2px solid var(--ink); background: var(--cream); color: var(--wine); padding: 9px 12px; border-radius: 4px; text-transform: none; letter-spacing: .04em; }
+body.card.m-y2k-blog .cards { grid-template-columns: 1fr 1fr; gap: 22px 18px; }
+body.card.m-y2k-blog .entry h2 { font-size: 16px; }
+body.card.m-y2k-blog .why { font-size: 13px; }
+body.card.m-y2k-blog .idea { font-size: 17px; }
+body.card.m-y2k-blog .scrawl { font-size: 28px; }
+body.card.m-y2k-blog .side { font-size: 16px; }
+body.card.m-y2k-blog .side h3 { font-size: 14px; }
+
+@media (max-width: 760px) {
+  .winbody { grid-template-columns: 1fr; padding: 10px; }
+  .post .lib { padding: 16px 10px; }
+  .post .cards { grid-template-columns: 1fr; }
+}

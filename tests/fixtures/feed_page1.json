@@ -1,0 +1,97 @@
+{
+ "items": [
+  {
+   "media": {
+    "id": "3501000000000000001_9001",
+    "code": "FxAmple001",
+    "media_type": 2,
+    "user": {
+     "username": "example_clay_coach"
+    },
+    "caption": {
+     "text": "Nobody tells you the first week of a retreat business is mostly spreadsheets. Here is the one I wish I had started with."
+    },
+    "taken_at": 1792833120,
+    "like_count": 1840,
+    "comment_count": 96,
+    "play_count": 52310
+   }
+  },
+  {
+   "media": {
+    "id": "3501000000000000002_9002",
+    "code": "FxAmple002",
+    "media_type": 8,
+    "user": {
+     "username": "example_slow_studio"
+    },
+    "caption": {
+     "text": "5 things I stopped doing so my studio could breathe\n\n1. Saying yes to every enquiry\n2. Discounting in week one\n3. Posting at 6am"
+    },
+    "taken_at": 1792687200,
+    "like_count": 922,
+    "comment_count": 41
+   }
+  },
+  {
+   "media": {
+    "id": "3501000000000000003_9003",
+    "code": "FxAmple003",
+    "media_type": 2,
+    "user": {
+     "username": "example_retreat_notes"
+    },
+    "caption": {
+     "text": "POV: you finally raised your prices and the right people said yes. Before and after of my booking calendar."
+    },
+    "taken_at": 1792479900,
+    "like_count": 3310,
+    "comment_count": 208,
+    "play_count": 120450
+   }
+  },
+  {
+   "media": {
+    "id": "3501000000000000004_9004",
+    "code": "FxAmple004",
+    "media_type": 1,
+    "user": {
+     "username": "example_launch_diary"
+    },
+    "caption": {
+     "text": "What if your dream client has already read your bio three times and is waiting for you to say the next thing? 🔮"
+    },
+    "taken_at": 1792351800,
+    "like_count": 410,
+    "comment_count": 12
+   }
+  },
+  {
+   "media": {
+    "id": "3501000000000000005_9005",
+    "media_type": 1,
+    "user": {
+     "username": "example_no_code"
+    },
+    "caption": {
+     "text": "This one has no shortcode and must be skipped."
+    },
+    "taken_at": 1792231200
+   }
+  },
+  {
+   "id": "3501000000000000006_9006",
+   "code": "FxAmple006",
+   "media_type": 2,
+   "user": {
+    "username": "example_quiet_ledger"
+   },
+   "caption": null,
+   "taken_at": 1792065600,
+   "like_count": 77,
+   "comment_count": 3
+  }
+ ],
+ "more_available": true,
+ "next_max_id": "QVFDexample_page2"
+}

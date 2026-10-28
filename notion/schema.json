@@ -1,0 +1,21 @@
+{
+  "_about": "The Instagram Saves database. Property names and types are fixed: the tool writes to these names. Category options come from your config.json categories plus Other.",
+  "properties": [
+    {"name": "Name", "type": "title", "about": "the first line of the caption, or 'Save by @author'"},
+    {"name": "URL", "type": "url", "about": "the link to the post on instagram.com"},
+    {"name": "Media ID", "type": "rich_text", "about": "Instagram's id for the post, used so nothing is added twice"},
+    {"name": "Type", "type": "select", "options": ["Post", "Reel", "Carousel"]},
+    {"name": "Author", "type": "rich_text", "about": "the creator's handle, without the @"},
+    {"name": "Caption", "type": "rich_text", "about": "the caption, up to Notion's 2000 character limit"},
+    {"name": "Posted", "type": "date", "about": "when the creator published it (Instagram does not share when you saved it)"},
+    {"name": "Category", "type": "select", "options": ["Other"]},
+    {"name": "Status", "type": "select", "options": ["New", "Tagged", "Used", "Archived"]},
+    {"name": "Likes", "type": "number"},
+    {"name": "Comments", "type": "number"},
+    {"name": "Plays", "type": "number"},
+    {"name": "Hook type", "type": "select", "options": ["Curiosity gap", "Proof first", "Pain point", "Contrarian", "Question", "Story open", "Before and after", "List or steps", "Relatable moment", "Other"]},
+    {"name": "Format", "type": "select", "options": ["Talking head", "Voiceover on b-roll", "Text on screen", "Tutorial", "Carousel of tips", "Photo dump", "Quote card", "Meme", "Interview clip", "Other"]},
+    {"name": "Why saved", "type": "rich_text", "about": "one line: what makes this one worth keeping, read from the caption"},
+    {"name": "Idea", "type": "rich_text", "about": "one line: a post of your own this could spark"}
+  ]
+}

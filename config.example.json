@@ -1,0 +1,13 @@
+{
+  "_about": "Copy this file to config.json and make it yours. Lines starting with an underscore are notes and are ignored.",
+  "notion_database_id": "",
+  "since": "",
+  "max_pages": 20,
+  "niche": "pottery retreats for burnt-out lawyers",
+  "categories": {
+    "Offers and sales": ["price", "pricing", "sales page", "launch", "client", "clients", "booking"],
+    "Content and hooks": ["hook", "reel", "caption", "carousel", "newsletter", "post"],
+    "Systems and tools": ["tool", "tools", "spreadsheet", "workflow", "template", "automate"],
+    "Wellness and rituals": ["ritual", "tea", "morning", "rest", "slow", "breathe"]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "ig-saves-to-notion",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "description": "Your Instagram saves become a searchable hook library. browser_sync.js runs in your own browser tab; Node is only used by the tests.",
+  "scripts": { "test": "python3 -m unittest discover -s tests" },
+  "license": "MIT"
+}

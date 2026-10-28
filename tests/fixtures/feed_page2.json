@@ -1,0 +1,103 @@
+{
+ "items": [
+  {
+   "media": {
+    "id": "3501000000000000007_9007",
+    "code": "FxAmple007",
+    "media_type": 8,
+    "user": {
+     "username": "example_clay_coach"
+    },
+    "caption": {
+     "text": "Three questions I ask before I take on a new client. Number two filters out almost everyone."
+    },
+    "taken_at": 1791792000,
+    "like_count": 1500,
+    "comment_count": 77
+   }
+  },
+  {
+   "media": {
+    "id": "3501000000000000008_9008",
+    "code": "FxAmple008",
+    "media_type": 2,
+    "user": {
+     "username": "example_slow_studio"
+    },
+    "caption": {
+     "text": "The tea ritual that changed how I open every workshop (it takes ninety seconds)."
+    },
+    "taken_at": 1791469200,
+    "like_count": 2210,
+    "comment_count": 130,
+    "play_count": 78900
+   }
+  },
+  {
+   "media": {
+    "id": "3501000000000000009_9009",
+    "code": "FxAmple009",
+    "media_type": 1,
+    "user": {
+     "username": "example_retreat_notes"
+    },
+    "caption": {
+     "text": "Stop calling it a newsletter. Call it the letter your best clients read first."
+    },
+    "taken_at": 1791025860,
+    "like_count": 640,
+    "comment_count": 29
+   }
+  },
+  {
+   "media": {
+    "id": "3501000000000000010_9010",
+    "code": "FxAmple010",
+    "media_type": 2,
+    "user": {
+     "username": "example_launch_diary"
+    },
+    "caption": {
+     "text": "I mapped my whole offer on one page, then showed my sister. Watch her face when she gets to step four."
+    },
+    "taken_at": 1790621100,
+    "like_count": 980,
+    "comment_count": 64,
+    "play_count": 40100
+   }
+  },
+  {
+   "media": {
+    "id": "3501000000000000011_9011",
+    "code": "FxAmple011",
+    "media_type": 8,
+    "user": {
+     "username": "example_quiet_ledger"
+    },
+    "caption": {
+     "text": "A short list of the tools I pay for every month and the ones I cancelled this year"
+    },
+    "taken_at": 1789983000,
+    "like_count": 530,
+    "comment_count": 18
+   }
+  },
+  {
+   "media": {
+    "id": "3501000000000000012_9012",
+    "code": "FxAmple012",
+    "media_type": 1,
+    "user": {
+     "username": "example_clay_coach"
+    },
+    "caption": {
+     "text": "The most useful sentence on my sales page is also the shortest one."
+    },
+    "taken_at": 1789390800,
+    "like_count": 705,
+    "comment_count": 31
+   }
+  }
+ ],
+ "more_available": false
+}

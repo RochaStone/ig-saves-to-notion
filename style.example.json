@@ -1,0 +1,40 @@
+{
+  "name": "",
+  "owner": "",
+  "handle": "",
+  "site": "",
+  "palette": {
+    "hero": "",
+    "accent": "",
+    "paper": "",
+    "paper_pink": "",
+    "ink": "",
+    "marker": "",
+    "plum": "",
+    "wine": "",
+    "gold": "",
+    "cool": ""
+  },
+  "fonts": {
+    "masthead": "",
+    "label": "",
+    "body": "",
+    "scrawl": "",
+    "script": "",
+    "mono": ""
+  },
+  "motif": "",
+  "lines": {
+    "masthead": "",
+    "headline": "",
+    "scrawl": "",
+    "todo": "",
+    "stamp": "",
+    "celebrate": "",
+    "affirm": "",
+    "invite": "",
+    "magazine": ""
+  },
+  "references": [],
+  "notes": ""
+}
